@@ -6,7 +6,15 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extend: true}));
 
+const Cupcake = require('./models/cupcakes.js');
 
+app.get('/cupcakes', (req,res) =>{
+    console.log("works")
+    Cupcake.create(req.body,(err,createCupcake)=>{
+
+        console.log("works")
+    })
+});
 
 app.listen(port, (req, res) =>{
     console.log("listening on ", port)
