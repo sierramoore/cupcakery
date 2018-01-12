@@ -3,6 +3,24 @@
 	<title></title>
 </head>
 <body>
- skdjsafhbwduisa
+ <h1>Cupcakery</h1>
+ <ul>
+ 	<% for (let i = 0; i < Cupcakes.length; i++) { %>
+ 		<a href="#">
+	 		<li>
+	 			The
+	 			flavor
+	 			is
+	 			<%= Cupcakes[i].flavor %>
+	 			and 
+	 			it has
+	 			<%= Cupcakes[i].frosting %>
+	 			frosting 
+	 			and it is
+	 			<% if (Cupcakes[i].delicious) { %> delicious! <% } else { %> NOT delicious <%}%>
+	 		</li>
+ 		</a>
+ 	<% } %>
+ </ul>
 </body>
 </html>

@@ -14,8 +14,11 @@ app.use(bodyParser.urlencoded({ extend: true}));
 const Cupcake = require('./models/cupcakes.js');
 
 app.get('/cupcakes', (req,res) =>{
-	res.render('index.ejs');
-    
+	Cupcake.find({}, (req, allCupcakes)=>{
+		res.render('index.ejs', {
+			Cupcakes: allCupcakes
+		})
+	})	 
 })
 app.post('/cupcakes', (req,res)=>{
 	if (req.body.delicious === 'on'){
@@ -23,7 +26,8 @@ app.post('/cupcakes', (req,res)=>{
 	} else req.body.delicious = false;
 
 	Cupcake.create(req.body,(err,createCupcake)=>{
-        console.log("created: " + createCupcake)
+        console.log('created: ' + createCupcake)
+        res.redirect('/cupcakes');
     })
 })
 
