@@ -14,9 +14,10 @@ app.use(bodyParser.urlencoded({ extend: true}));
 const Cupcake = require('./models/cupcakes.js');
 
 app.get('/cupcakes', (req,res) =>{
-	Cupcake.find({}, (req, allCupcakes)=>{
+	Cupcake.find({}, (err, allCupcakes)=>{
+		if (err) console.log(err);
 		res.render('index.ejs', {
-			Cupcakes: allCupcakes
+			cupcakes: allCupcakes
 		})
 	})	 
 })
@@ -26,7 +27,6 @@ app.post('/cupcakes', (req,res)=>{
 	} else req.body.delicious = false;
 
 	Cupcake.create(req.body,(err,createCupcake)=>{
-        console.log('created: ' + createCupcake)
         res.redirect('/cupcakes');
     })
 })
@@ -37,6 +37,15 @@ app.get('/cupcakes/new', (req,res) =>{
     //     console.log(req.body);
     // })
 })
+app.get('/cupcakes/:id', (req,res)=>{
+	Cupcake.findById(req.params.id,(err, foundCupcake)=>{
+		res.render('show.ejs', {
+			Cupcake: foundCupcake
+		})
+	})
+	
+})
+
 
 app.listen(port, (req, res) =>{
     console.log("listening on ", port)

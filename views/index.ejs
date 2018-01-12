@@ -1,23 +1,24 @@
 <html>
 <head>
-	<title></title>
+	<title>Index Page</title>
 </head>
 <body>
  <h1>Cupcakery</h1>
+ <a href="/cupcakes/new">Create a new cupcake</a>
  <ul>
- 	<% for (let i = 0; i < Cupcakes.length; i++) { %>
- 		<a href="#">
+ 	<% for (let i = 0; i < cupcakes.length; i++) { %>
+ 		<a href="/cupcakes/<%=cupcakes[i].id%>">
 	 		<li>
 	 			The
 	 			flavor
 	 			is
-	 			<%= Cupcakes[i].flavor %>
+	 			<%= cupcakes[i].flavor %>
 	 			and 
 	 			it has
-	 			<%= Cupcakes[i].frosting %>
+	 			<%= cupcakes[i].frosting %>
 	 			frosting 
 	 			and it is
-	 			<% if (Cupcakes[i].delicious) { %> delicious! <% } else { %> NOT delicious <%}%>
+	 			<% if (cupcakes[i].delicious) { %> delicious! <% } else { %> NOT delicious <%}%>
 	 		</li>
  		</a>
  	<% } %>
